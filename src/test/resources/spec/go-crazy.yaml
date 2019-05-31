@@ -1,0 +1,50 @@
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  annotations: {}
+  labels: {}
+  name: "some-name"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: "some-name"
+  template:
+    metadata:
+      annotations: {}
+      labels:
+        app: "some-name"
+    spec:
+      containers:
+      - command:
+        - "sh"
+        - "-c"
+        - "go run /mnt/go/script.go | xargs -I '%' curl 'http://ls-shipper:8080' -XPOST\
+          \ -d '%'"
+        env:
+        - name: "ALWAYS_REDEPLOY"
+          value: "2019-05-25T13:00:00Z"
+        image: "golang"
+        imagePullPolicy: "Always"
+        name: "go"
+        ports:
+        - containerPort: 9000
+        resources:
+          limits:
+            memory: null
+            cpu: null
+          requests:
+            memory: null
+            cpu: null
+        volumeMounts:
+        - mountPath: "/mnt/go"
+          name: "config-volume"
+      imagePullSecrets:
+      - name: "regcred"
+      nodeSelector: {}
+      volumes:
+      - configMap:
+          name: "some-name-config"
+        name: "config-volume"

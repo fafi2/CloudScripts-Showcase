@@ -1,0 +1,4 @@
+= CloudScripts-Showcase presented at Digital Xchange 2019
+
+* https://digital-xchange.de/
+* CloudScripts is not open source yet. That's why the sources unfortunately don't compile.

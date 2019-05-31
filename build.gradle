@@ -1,0 +1,42 @@
+apply plugin: 'groovy'
+
+version = "1.0"
+group = 'net.codefudge.showcasedixday'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.10'
+    compile 'ch.qos.logback:logback-classic:1.1.2'
+    compile 'ch.qos.logback:logback-core:1.1.2'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.8'
+
+    compile project(':cloudscripts-core')
+
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    testCompile 'junit:junit:4.12'
+    testCompile 'cglib:cglib-nodep:3.2.12'
+}
+
+subprojects {
+    apply plugin: 'groovy'
+
+    project.version = rootProject.version
+    project.group = rootProject.group
+
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        compile 'org.codehaus.groovy:groovy-all:2.4.10'
+        compile 'ch.qos.logback:logback-classic:1.1.2'
+        compile 'ch.qos.logback:logback-core:1.1.2'
+
+        testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+        testCompile 'junit:junit:4.12'
+    }
+
+}

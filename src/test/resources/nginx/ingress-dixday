@@ -1,0 +1,47 @@
+server {
+    server_name elastic-db.dixday.codefudge.net;
+
+    location / {
+        proxy_pass http://elastic-db:9200;
+    }
+}
+
+server {
+    server_name kibana.dixday.codefudge.net;
+
+    location / {
+        proxy_pass http://kibana:5601;
+    }
+}
+
+server {
+    server_name ls-heartbeat.dixday.codefudge.net;
+
+    location / {
+        proxy_pass http://ls-heartbeat:9600;
+    }
+}
+
+server {
+    server_name go-crazy.dixday.codefudge.net;
+
+    location / {
+        proxy_pass http://go-crazy:9000;
+    }
+}
+
+server {
+    server_name shipper.dixday.codefudge.net;
+
+    location / {
+        proxy_pass http://ls-shipper:8080;
+    }
+}
+
+server {
+    server_name nginx.dixday.codefudge.net;
+
+    location / {
+        proxy_pass http://nginx:80;
+    }
+}

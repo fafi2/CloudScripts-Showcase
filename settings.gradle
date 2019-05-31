@@ -1,0 +1,3 @@
+include ':cloudscripts-core'
+
+project(':cloudscripts-core').projectDir = new File(settingsDir, '../CloudScripts/module-core')

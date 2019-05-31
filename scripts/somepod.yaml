@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: somepod
+spec:
+  restartPolicy: Never
+  containers:
+  - name: do
+    image: centos:7
+#    command: ["/bin/bash", "-ecx", "while :; do curl 'http://go-crazy:9000/go' ; sleep 5 ; done"]
+    command: ["/bin/bash", "-ecx", "while :; do printf '.'; sleep 10 ; done"]
+
